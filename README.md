@@ -2,7 +2,7 @@
 
 ![Dashboard Download Counter](https://img.shields.io/github/downloads/starkzarn/opnsense-grafana-loki/total)
 
-This repository contains a **Grafana dashboard JSON export** for visualizing OPNSense firewall traffic logs (`filterlog`) with **GeoIP enrichment**. It accompanies my [blog post](https://roguesecurity.dev/blog/opnsense-loki) on how to collect, enrich, and visualize OPNSense logs using **Grafana Alloy** and **Loki** as the data source.
+This repository contains a **Grafana dashboard JSON export** for visualizing OPNSense firewall traffic logs (`filterlog`) with **GeoIP enrichment**. It accompanies my [blog post](https://roguesecurity.dev/blog/opnsense-loki-part2) on how to collect, enrich, and visualize OPNSense logs using **Grafana Alloy** and **Loki** as the data source.
 
 ## 📊 Dashboard Overview
 
@@ -23,7 +23,7 @@ To use this dashboard, ensure you have the following setup:
 - **Grafana** (v8+ recommended)
 - **Grafana Alloy** as the data source for Grafana (for log aggregation and analysis)
 - **Loki** as the log aggregator to collect OPNSense `filterlog` data
-- **GeoIP enrichment** via your log pipeline in Loki (again, see the [blog post](https://roguesecurity.dev/blog/opnsense-loki) )
+- **GeoIP enrichment** via your log pipeline in Loki (again, see the [blog post](https://roguesecurity.dev/blog/opnsense-loki-part2) )
 - Grafana **worldmap** plugin (if using geo panels)
 
 ## 🚀 Getting Started

@@ -49,19 +49,19 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "11.6.1"
+      "version": "12.2.0"
     },
     {
       "type": "panel",
       "id": "grafana-clock-panel",
       "name": "Clock",
-      "version": "2.1.8"
+      "version": "2.1.9"
     },
     {
       "type": "datasource",
       "id": "loki",
       "name": "Loki",
-      "version": "1.0.0"
+      "version": "12.2.0"
     },
     {
       "type": "panel",
@@ -108,7 +108,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": null,
   "links": [
     {
       "asDropdown": true,
@@ -186,7 +185,7 @@
           "zoneFormat": "offsetAbbv"
         }
       },
-      "pluginVersion": "2.1.8",
+      "pluginVersion": "2.1.9",
       "targets": [
         {
           "datasource": {
@@ -232,10 +231,16 @@
       },
       "id": 16,
       "options": {
+        "displayLabels": [
+          "name"
+        ],
         "legend": {
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
         },
         "pieType": "pie",
         "reduceOptions": {
@@ -245,13 +250,14 @@
           "fields": "",
           "values": false
         },
+        "sort": "desc",
         "tooltip": {
           "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -260,7 +266,8 @@
           },
           "direction": "backward",
           "editorMode": "code",
-          "expr": "sum by(source_country_code) (\n  count_over_time(\n    {host=~\".+\"} \n    | regexp `source_country_code=(?P<source_country_code>\\w+)` \n    | source_country_code != \"\"\n  [${__range}]\n  )\n)\n",
+          "expr": "sum by(source_country) (\n  count_over_time(\n    {host=~\".+\"} \n    | regexp `source_country=(?P<source_country>\\w+)` \n    | source_country != \"\"\n  [${__range}]\n  )\n)\n",
+          "legendFormat": "{{source_country}}",
           "queryType": "range",
           "refId": "A"
         }
@@ -297,10 +304,16 @@
       },
       "id": 17,
       "options": {
+        "displayLabels": [
+          "name"
+        ],
         "legend": {
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
         },
         "pieType": "pie",
         "reduceOptions": {
@@ -310,13 +323,14 @@
           "fields": "",
           "values": false
         },
+        "sort": "desc",
         "tooltip": {
           "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -325,7 +339,8 @@
           },
           "direction": "backward",
           "editorMode": "code",
-          "expr": "sum by(dest_country_code) (\n  count_over_time(\n    {host=~\".+\"} \n    | regexp `dest_country_code=(?P<dest_country_code>\\w+)` \n    | dest_country_code != \"\"\n  [${__range}]\n  )\n)\n",
+          "expr": "sum by(dest_country) (\n  count_over_time(\n    {host=~\".+\"} \n    | regexp `dest_country=(?P<dest_country>\\w+)` \n    | dest_country != \"\"\n  [${__range}]\n  )\n)\n",
+          "legendFormat": "{{dest_country}}",
           "queryType": "range",
           "refId": "A"
         }
@@ -355,7 +370,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -367,7 +383,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 11,
         "w": 12,
         "x": 0,
         "y": 8
@@ -444,10 +460,11 @@
           "id": "zero",
           "lat": 0,
           "lon": 0,
+          "noRepeat": false,
           "zoom": 1
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -456,7 +473,7 @@
           },
           "direction": "backward",
           "editorMode": "code",
-          "expr": "{host=~\".+\"} | regexp `source_country_code=(?P<source_country_code>\\w+)` | line_format `{{.source_country_code}}`",
+          "expr": "{host=~\".+\"} | regexp `source_country=(?P<source_country>\\w+)` | line_format `{{.source_country}}`",
           "queryType": "range",
           "refId": "A"
         }
@@ -486,7 +503,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -498,7 +516,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 11,
         "w": 12,
         "x": 12,
         "y": 8
@@ -575,10 +593,11 @@
           "id": "zero",
           "lat": 0,
           "lon": 0,
+          "noRepeat": false,
           "zoom": 1
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -587,7 +606,7 @@
           },
           "direction": "backward",
           "editorMode": "builder",
-          "expr": "{host=~\".+\"} | regexp `dest_country_code=(?P<dest_country_code>\\w+)` | line_format `{{.dest_country_code}}`",
+          "expr": "{host=~\".+\"} | regexp `dest_country=(?P<dest_country>\\w+)` | line_format `{{.dest_country}}`",
           "queryType": "range",
           "refId": "A"
         }
@@ -629,6 +648,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -644,7 +664,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               }
             ]
           }
@@ -701,7 +722,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 16
+        "y": 19
       },
       "id": 11,
       "interval": "$interval",
@@ -723,7 +744,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -797,7 +818,7 @@
         "h": 10,
         "w": 7,
         "x": 0,
-        "y": 26
+        "y": 29
       },
       "id": 4,
       "options": {
@@ -821,13 +842,14 @@
           "fields": "",
           "values": false
         },
+        "sort": "desc",
         "tooltip": {
           "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -901,7 +923,7 @@
         "h": 10,
         "w": 7,
         "x": 7,
-        "y": 26
+        "y": 29
       },
       "id": 13,
       "options": {
@@ -925,13 +947,14 @@
           "fields": "",
           "values": false
         },
+        "sort": "desc",
         "tooltip": {
           "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -1003,7 +1026,7 @@
         "h": 10,
         "w": 10,
         "x": 14,
-        "y": 26
+        "y": 29
       },
       "id": 1,
       "options": {
@@ -1027,13 +1050,14 @@
           "fields": "",
           "values": true
         },
+        "sort": "desc",
         "tooltip": {
           "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.1",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -1097,7 +1121,7 @@
         "h": 10,
         "w": 8,
         "x": 0,
-        "y": 36
+        "y": 39
       },
       "id": 7,
       "options": {
@@ -1121,13 +1145,14 @@
           "fields": "",
           "values": false
         },
+        "sort": "desc",
         "tooltip": {
           "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -1170,7 +1195,7 @@
         "h": 10,
         "w": 8,
         "x": 8,
-        "y": 36
+        "y": 39
       },
       "id": 3,
       "options": {
@@ -1194,13 +1219,14 @@
           "fields": "",
           "values": false
         },
+        "sort": "desc",
         "tooltip": {
           "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -1244,7 +1270,7 @@
         "h": 10,
         "w": 8,
         "x": 16,
-        "y": 36
+        "y": 39
       },
       "id": 12,
       "options": {
@@ -1268,13 +1294,14 @@
           "fields": "",
           "values": false
         },
+        "sort": "desc",
         "tooltip": {
           "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -1331,7 +1358,7 @@
                 "id": "custom.hideFrom",
                 "value": {
                   "legend": false,
-                  "tooltip": false,
+                  "tooltip": true,
                   "viz": true
                 }
               }
@@ -1343,7 +1370,7 @@
         "h": 10,
         "w": 8,
         "x": 0,
-        "y": 46
+        "y": 49
       },
       "id": 2,
       "options": {
@@ -1367,13 +1394,14 @@
           "fields": "",
           "values": true
         },
+        "sort": "desc",
         "tooltip": {
           "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -1479,7 +1507,7 @@
                 "id": "custom.hideFrom",
                 "value": {
                   "legend": false,
-                  "tooltip": false,
+                  "tooltip": true,
                   "viz": true
                 }
               }
@@ -1491,7 +1519,7 @@
         "h": 10,
         "w": 8,
         "x": 8,
-        "y": 46
+        "y": 49
       },
       "id": 9,
       "options": {
@@ -1513,13 +1541,14 @@
           "fields": "",
           "values": true
         },
+        "sort": "desc",
         "tooltip": {
           "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -1611,7 +1640,7 @@
         "h": 10,
         "w": 8,
         "x": 16,
-        "y": 46
+        "y": 49
       },
       "id": 10,
       "options": {
@@ -1635,13 +1664,14 @@
           "fields": "",
           "values": true
         },
+        "sort": "desc",
         "tooltip": {
           "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -1688,7 +1718,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 56
+        "y": 59
       },
       "id": 6,
       "panels": [],
@@ -1711,6 +1741,9 @@
               "type": "auto"
             },
             "filterable": true,
+            "footer": {
+              "reducers": []
+            },
             "inspect": false
           },
           "mappings": [],
@@ -1718,7 +1751,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               }
             ]
           }
@@ -1904,20 +1938,12 @@
         "h": 18,
         "w": 24,
         "x": 0,
-        "y": 57
+        "y": 60
       },
       "id": 8,
       "options": {
         "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "enablePagination": true,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
+        "enablePagination": true,
         "frameIndex": 0,
         "showHeader": true,
         "sortBy": [
@@ -1927,7 +1953,7 @@
           }
         ]
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
@@ -1935,8 +1961,8 @@
             "uid": "${DS_LOKI}"
           },
           "direction": "backward",
-          "editorMode": "builder",
-          "expr": "{hostname=~\"$hostname\", syslog_app=\"filterlog\"} | regexp `$regexipv4` | ipversion = `4`",
+          "editorMode": "code",
+          "expr": "{hostname=~\"$hostname\", syslog_app=\"filterlog\"} | regexp `$regexipv4` | ipversion = `4`  | label_format protocol=\"{{.protocol | ToLower }}\"",
           "hide": false,
           "key": "Q-5dca6c8a-65e7-4910-9c32-542b4e6408f5-0",
           "queryType": "range",
@@ -1954,19 +1980,6 @@
           "key": "Q-5dca6c8a-65e7-4910-9c32-542b4e6408f5-0",
           "queryType": "range",
           "refId": "ipv6"
-        },
-        {
-          "datasource": {
-            "type": "loki",
-            "uid": "${DS_LOKI}"
-          },
-          "direction": "backward",
-          "editorMode": "builder",
-          "expr": "{hostname=~\"$hostname\", syslog_app=\"filterlog\"} | regexp `$regexcarp` | protocol = `carp`",
-          "hide": false,
-          "key": "Q-5dca6c8a-65e7-4910-9c32-542b4e6408f5-0",
-          "queryType": "range",
-          "refId": "carp"
         }
       ],
       "title": "Filter Log",
@@ -2054,7 +2067,7 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 41,
+  "schemaVersion": 42,
   "tags": [
     "pfSense",
     "firewall",
@@ -2078,7 +2091,7 @@
         "current": {},
         "datasource": {
           "type": "loki",
-          "uid": "$datasource_loki"
+          "uid": "${DS_LOKI}"
         },
         "definition": "",
         "includeAll": false,
@@ -2293,13 +2306,14 @@
     ]
   },
   "time": {
-    "from": "now-5m",
-    "to": "now"
+    "from": "2025-10-12T20:57:26.207Z",
+    "to": "2025-10-12T21:07:26.207Z"
   },
   "timepicker": {},
   "timezone": "",
   "title": "OPNsense Filter",
   "uid": "jqiwwGpVk",
-  "version": 12,
-  "weekStart": ""
+  "version": 14,
+  "weekStart": "",
+  "id": null
 }
